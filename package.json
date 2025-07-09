@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.49",
     "@types/swiper": "^5.4.3",
     "aos": "^2.3.4",
     "fullpage.js": "^4.0.37",
