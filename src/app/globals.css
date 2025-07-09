@@ -1,42 +1,538 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* default */
+@charset "UTF-8";
+
+/* 기본 설정들 */
+html {
+  overflow-x: hidden;
+  --main: #eb8f22;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html * {
+  word-break: keep-all;
+}
+html,
+body {
+  font-family: 'Pretendard', sans-serif;
+  height: 100%;
+  color: #222;
+}
+section {
+  overflow: hidden;
+}
+img,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+img,
+strong {
+  display: block;
+}
+form,
+input {
+  background: transparent;
+}
+
+/* 모달, 팝업 공통 css */
+.modal {
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal .modal_inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pc_block {
+  display: block;
+}
+.mobile_block {
+  display: none;
+}
+.block_1024 {
+  display: block;
+}
+.none_1024 {
+  display: none;
+}
+.ico_close {
+  background: url(/img/common/ico_close.svg) center center / 100% no-repeat;
+  width: 24px;
+  height: 24px;
+}
+.w1360 {
+  width: 90%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.w1280 {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+._cover img,
+._cover iframe,
+._cover video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+[data-aos='fade-left'] {
+  transform: translate3d(30px, 0, 0);
+}
+[data-aos='fade-right'] {
+  transform: translate3d(-30px, 0, 0);
+}
+[data-aos='fade-up'] {
+  transform: translate3d(0, 30px, 0);
+}
+[data-aos='zoom-in'] {
+  transform: scale(0.9);
+}
+[data-aos='fade-down'] {
+  transform: translate3d(0, -60px, 0);
+}
+/* 커스텀 셀렉트 박스 */
+.selectBox {
+  position: relative;
+}
+.selectBox .label {
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  border-radius: 6px;
+  border: 0;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -0.56px;
+  padding: 8px 10px;
+}
+.selectBox .optionList {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s ease-in;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 10;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 9px 10px rgba(0, 0, 0, 0.1);
+}
+.selectBox .optionList > div {
+  display: flex;
+  flex-direction: column;
+}
+.selectBox .optionList.active {
+  height: fit-content;
+}
+
+/* 웹접근성 고려 */
+.blind {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  bottom: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.fp-warning,
+.fp-watermark {
+  opacity: 0;
+}
+@media screen and (max-width: 1280px) {
+  .fp-enabled body,
+  html.fp-enabled {
+    overflow-y: auto !important;
+  }
+  .fp-overflow {
+    max-height: unset !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .block_1024 {
+    display: none;
+  }
+  .none_1024 {
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .pc_block {
+    display: none;
+  }
+  .mobile_block {
+    display: block;
+  }
+  .ico_close {
+    width: 16px;
+    height: 16px;
+  }
+  .fp-overflow {
+    max-height: unset !important;
+  }
+  .fp-responsive .fp-is-overflow.fp-section {
+    min-height: auto !important;
   }
 }
 
+/* reset */
+
 html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-text-size-adjust: none; /* 크롬, 사파리, 오페라 신버전 / */
+  -ms-text-size-adjust: none; /* / IE / */
+  -moz-text-size-adjust: none; /* / 파이어폭스 / */
+  -o-text-size-adjust: none; /* / 오페라 구버전 / */
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+input,
+textarea,
+button,
+select {
+  appearance: none;
+  border-radius: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  outline: 0;
+}
+
+input[type='radio'] {
+  appearance: none;
+}
+
+/* ios 기본 스타일 제거 */
+input {
+  /*ios대응*/
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+select {
+  /*ios대응*/
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+select::-ms-expand {
+  display: none; /* 화살표 없애기 for IE10, 11*/
+}
+
+/* scroll */
+html::-webkit-scrollbar {
+  width: 6px;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: rgb(86, 144, 130);
+  border-radius: 10px;
+}
+
+/* font */
+
+/* font-family: 'Noto Sans KR', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Pretendard */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src: local('Pretendard Black'),
+    url('/fonts/Pretendard-Black.woff2') format('woff2'),
+    url('/fonts/Pretendard-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: swap;
+  src: local('Pretendard ExtraBold'),
+    url('/fonts/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/fonts/Pretendard-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'),
+    url('/fonts/Pretendard-Bold.woff2') format('woff2'),
+    url('/fonts/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Pretendard SemiBold'),
+    url('/fonts/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/fonts/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Pretendard Medium'),
+    url('/fonts/Pretendard-Medium.woff2') format('woff2'),
+    url('/fonts/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'),
+    url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+    url('/fonts/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: swap;
+  src: local('Pretendard Light'),
+    url('/fonts/Pretendard-Light.woff2') format('woff2'),
+    url('/fonts/Pretendard-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-display: swap;
+  src: local('Pretendard ExtraLight'),
+    url('/fonts/Pretendard-ExtraLight.woff2') format('woff2'),
+    url('/fonts/Pretendard-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: swap;
+  src: local('Pretendard Thin'),
+    url('/fonts/Pretendard-Thin.woff2') format('woff2'),
+    url('/fonts/Pretendard-Thin.woff') format('woff');
+}
+
+/* 넥슨 Lv.1 고딕 */
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff')
+    format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff')
+    format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+/* 배민 주아체 */
+@font-face {
+  font-family: 'Jua';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2')
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Thin.woff')
+    format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
 }

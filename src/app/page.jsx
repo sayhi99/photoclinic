@@ -1,0 +1,757 @@
+'use client';
+
+import { useEffect } from 'react';
+
+export default function HomePage() {
+  useEffect(() => {
+    const fullpage = new fullpage('#fullpage');
+  }, []);
+
+  return (
+    <>
+      <div id="fullpage">
+        <section className="section section_1">
+          <div className="main_1 main_section">
+            <div className="camera">
+              {/* <!-- <div id="coords">X: --%, Y: --%</div> --> */}
+              <div className="grid">
+                <img src="/img/main/grid.svg" alt="" />
+              </div>
+              <div className="frame_wrap">
+                <div className="frame_1">
+                  <img src="/img/main/frame_1.svg" alt="" />
+                </div>
+                <div className="frame_2">
+                  <img src="/img/main/frame_2.svg" alt="" />
+                </div>
+                <div className="frame_3">
+                  <img src="/img/main/frame_3.svg" alt="" />
+                </div>
+                <div className="frame_4">
+                  <img src="/img/main/frame_4.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="swiper main_1_swiper">
+              <div className="swiper-wrapper">
+                <div className="swiper-slide">
+                  <div className="bg main_1_1">
+                    <div className="text_wrap">
+                      <b className="split_fast">포토클리닉은</b>
+                      <strong>
+                        병원의 이야기에 <br />
+                        사람의 하모니를 더합니다
+                      </strong>
+                      <p>
+                        모든 컨텐츠는 섬세한 기획과 따뜻한 감성으로 촬영합니다.{' '}
+                        <br />
+                        병원의 이야기가 특별한 브랜드가 되도록 진심을 담습니다.{' '}
+                        <br />
+                        사진은 "진주마음우산정신건강의학과의 감성"입니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="bg main_1_2">
+                    <div className="text_wrap">
+                      <b className="split_fast">포토클리닉은</b>
+                      <strong>
+                        섬세한 기획으로 <br />
+                        병원의 감성을 그려냅니다.
+                      </strong>
+                      <p>
+                        모든 사진은 단순한 기록이 아닌, 병원이 지닌 분위기와
+                        의료진의 따뜻한 마음을 전하는 작업입니다. <br />
+                        더원서울안과의 이야기를 닮은 공간, 그 안에서 환자를
+                        바라보는 시선까지 담아 <br />
+                        브랜드의 감성을 사진으로 완성합니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="bg main_1_3">
+                    <div className="text_wrap">
+                      <b className="split_fast">포토클리닉은</b>
+                      <strong>
+                        병원의 이야기를 <br />
+                        브랜드의 언어로 전합니다.
+                      </strong>
+                      <p>
+                        따뜻한 진료의 순간, 섬세하게 설계된 공간, <br />
+                        그리고 의료진의 진심이 한 장의 사진 속에서 브랜드가
+                        됩니다. <br />
+                        알파서울안과의 이야기를 포토클리닉의 감성으로
+                        기록했습니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bottom_wrap">
+              <div className="pagination_wrap">
+                <img src="/img/main/main_1_vector1.svg" alt="" />
+                <div className="fake_pagination">
+                  <span>3</span>
+                  <span>2</span>
+                  <span>1</span>
+                  <span>0</span>
+                </div>
+                <div className="swiper-pagination"></div>
+                <img src="/img/main/main_1_vector2.svg" alt="" />
+              </div>
+              <img src="/img/main/main_1_vector4.svg" alt="" />
+            </div>
+          </div>
+        </section>
+        <section className="section section_2">
+          <div className="main_2 main_section">
+            <div className="main_inner">
+              <div className="txt_wrap">
+                <div>
+                  <div className="main_tit">
+                    <span className="split_fast split_fade_right">
+                      Director
+                    </span>
+                    <h3 className="fade_up">
+                      <b>"포토클리닉만</b> 할 수 있는 이야기<b>"</b>
+                    </h3>
+                  </div>
+                  <div className="content fade_up">
+                    <p>
+                      병원공간과 사람의 조화를 최우선으로 생각합니다. <br />
+                      모든 컨텐츠는 섬세한 기획과 따뜻한 감성으로 만들어집니다.
+                    </p>
+                    <p>
+                      병원의 이야기와 의료진의 이미지, <br />
+                      직원들의 서비스와 공간이 주는 느낌이 모여, <br />
+                      병원브랜드를 만듭니다.
+                    </p>
+                    <p>
+                      우리 병원만의 이야기, <br />
+                      ​포토클리닉으로 시작해보세요.
+                    </p>
+                    <p>
+                      이름을 걸고, 진심을 담겠습니다. <br />
+                      포토코치 정연호 드림.
+                    </p>
+                  </div>
+                  <a
+                    className="link_btn fade_right"
+                    href="javascript:alert('준비중')"
+                  >
+                    <span>프로젝트 문의하기</span>
+                    <img src="/img/main/main_5_icon1.svg" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div className="img_wrap ">
+                <img
+                  className="main_2_img1 fade_left"
+                  src="/img/main/main_2_img1.png"
+                  alt=""
+                />
+                <img
+                  className="main_2_img2"
+                  src="/img/main/main_2_img2.png?v=2"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section section_3">
+          <div className="main_3 main_section">
+            <div className="main_inner">
+              <div className="main_tit">
+                <span className="split_fast split_fade_right">About</span>
+                <h3 className="fade_up">
+                  <b>포토클리닉이 걸어온 길</b>
+                </h3>
+                <p className="fade_up">
+                  "진심으로 걸어온 길,
+                  <br className="mobile_block" /> 병원이 잘 되길 바라는 마음을
+                  담아."
+                </p>
+              </div>
+              <ul className="fade_up">
+                <li>
+                  <div className="con">
+                    <img src="/img/main/main_3_img1.webp" alt="" />
+                    <strong>촬영한 병원</strong>
+                    <p>
+                      <b className="counting" data-count="350">
+                        00
+                      </b>{' '}
+                      여 곳
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div className="con">
+                    <img src="/img/main/main_3_img2.webp" alt="" />
+                    <strong>촬영한 의료진</strong>
+                    <p>
+                      <b className="counting" data-count="420">
+                        00
+                      </b>{' '}
+                      명 이상
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div className="con">
+                    <img src="/img/main/main_3_img3.webp" alt="" />
+                    <strong>전달된 보정사진</strong>
+                    <p>
+                      <b className="counting" data-count="32000">
+                        00,000
+                      </b>{' '}
+                      컷 이상
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section className="section section_4">
+          <div className="main_4 main_section">
+            <div className="main_inner">
+              <div className="img_wrap">
+                <div className="swiper">
+                  <div className="swiper-wrapper">
+                    <div className="swiper-slide">
+                      <div className="_cover">
+                        <img src="/img/main/main_4_img1.png" alt="" />
+                      </div>
+                    </div>
+                    <div className="swiper-slide">
+                      <div className="_cover">
+                        <img src="/img/main/main_4_img2.png" alt="" />
+                      </div>
+                    </div>
+                    <div className="swiper-slide">
+                      <div className="_cover">
+                        <img src="/img/main/main_4_img3.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="txt_wrap">
+                <div className="swiper">
+                  <div className="swiper-wrapper">
+                    <div className="swiper-slide">
+                      <div>
+                        <span className="top_txt split_fast split_fade_right">
+                          Philosophy
+                        </span>
+                        <h3>
+                          촬영을 하기 위한 과정, <br />
+                          <b>관심과 열정.</b>
+                        </h3>
+                        <p>
+                          포토클리닉은 자주 병원에 방문을 합니다. <br />
+                          저희가 하는 이 과정은 단순히 사진을 찍기 위함이
+                          아닙니다. <br />
+                          병원의 스토리와 그것으로 만들어지는 브랜드를 위한
+                          과정입니다.
+                        </p>
+                        <div className="load_wrap">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#69AAAF"
+                              strokeOpacity="0.2"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <svg
+                            className="load start"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#155855"
+                              strokeOpacity="1"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <span className="num">01</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="swiper-slide">
+                      <div>
+                        <span className="top_txt split_fast split_fade_right">
+                          Philosophy
+                        </span>
+                        <h3>
+                          우리는 <b>함께라는 가치</b>에 <br />
+                          집중합니다
+                        </h3>
+                        <p>
+                          저희는 원장님과 함께 병원의 직원 모두, 촬영에 참여하게
+                          합니다. <br />
+                          많은 병원들이 촬영 후, 병원 분위기가 좋아졌다고
+                          말합니다. <br />
+                          저희는 병원과 사람의 조화를 만드는 일을 합니다.
+                        </p>
+                        <div className="load_wrap">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#69AAAF"
+                              strokeOpacity="0.2"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <svg
+                            className="load start"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#155855"
+                              strokeOpacity="1"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <span className="num">02</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="swiper-slide">
+                      <div>
+                        <span className="top_txt split_fast split_fade_right">
+                          Philosophy
+                        </span>
+                        <h3>
+                          무엇보다{' '}
+                          <b>
+                            높은 퀄리티의 <br />
+                            결과물
+                          </b>
+                          을 드립니다
+                        </h3>
+                        <p>
+                          ​병원에 대한 관심, 인물촬영에 대한 깊은 철학에서
+                          시작합니다. 한장, 한장이 브랜드라는 생각으로 컨텐츠를
+                          만듭니다. 그래서 저희는 재촬영 비율이 거의 없습니다.
+                        </p>
+                        <div className="load_wrap">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#69AAAF"
+                              strokeOpacity="0.2"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <svg
+                            className="load start"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="66"
+                            height="66"
+                            viewBox="0 0 66 66"
+                            fill="none"
+                          >
+                            <circle
+                              cx="33.0482"
+                              cy="33.0001"
+                              r="30.5901"
+                              stroke="#155855"
+                              strokeOpacity="1"
+                              strokeWidth="3.22474"
+                            />
+                          </svg>
+                          <span className="num">03</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section section_5">
+          <div className="main_5 main_section">
+            <div className="main_inner">
+              <div className="main_tit">
+                <span className=" split_fast split_fade_right">Services</span>
+                <h3 className="fade_up">
+                  포토클리닉 <b>진심컨텐츠</b>
+                </h3>
+                <p className="fade_up">
+                  병원이 잘되길 바라는 진심에서 시작합니다
+                </p>
+              </div>
+              <ul className="trs_9 fade_up">
+                <li>
+                  <strong>​프리미엄</strong>
+                  <span>Premium</span>
+                  <div className="list_wrap">
+                    <p>- 의료진 프로필</p>
+                    <p>- 진료연출 기획 및 촬영</p>
+                    <p>- 병원 분위기 / 인테리어 </p>
+                  </div>
+                </li>
+                <li>
+                  <strong>​프리미엄+</strong>
+                  <span>Premium Plus</span>
+                  <div className="list_wrap">
+                    <p>- 프리미엄패키지 외</p>
+                    <p>- 브랜드영상 4K 1분 30초</p>
+                    <p>- 스토리영상 4K 30초</p>
+                  </div>
+                </li>
+                <li>
+                  <strong>홈페이지</strong>
+                  <span>Homepage</span>
+                  <div className="list_wrap">
+                    <p>- 프리미엄패키지 외</p>
+                    <p>- 홈페이지 제작</p>
+                  </div>
+                </li>
+                <li>
+                  <strong>구독컨텐츠</strong>
+                  <span>Subscribe Contents</span>
+                  <div className="list_wrap">
+                    <p>- 사진 구독</p>
+                    <p>- 인스타그램 관리</p>
+                    <p>- 원내 사진 관리</p>
+                  </div>
+                </li>
+              </ul>
+              <div className="txt_box trs_12 fade_up">
+                <p>
+                  저희 포토클리닉 컨텐츠는 병원의 홍보를 위한 컨텐츠뿐만 아니라,
+                  병원의 브랜딩을 위한 이미지와 영상을 기획하고 만듭니다. <br />
+                  이미지는 병원의 스토리를 이야기 하는데 가장 좋은 도구입니다.{' '}
+                  <br />
+                  병원의 스토리에 맞게, 원하는 컨텐츠를 고르세요. 패키지 상품은
+                  합리적인 가격에 최상의 컨텐츠를 제공합니다.
+                </p>
+              </div>
+              <a
+                className="link_btn fade_right trs_12"
+                href="javascript:alert('준비중')"
+              >
+                <span>프로젝트 문의하기</span>
+                <img src="/img/main/main_5_icon1.svg" alt="" />
+              </a>
+            </div>
+          </div>
+        </section>
+        <section className="section section_6 ">
+          <div className="main_6 main_section">
+            <div className="main_inner">
+              <div className="main_tit">
+                <span className="split_fast split_fade_right">Portfolio</span>
+                <h3 className="fade_up trs_3">
+                  포토클리닉 <b>함께 한 병원들</b>
+                </h3>
+                <p className="fade_up trs_6">진심으로 담은 우리병원사진</p>
+              </div>
+              <div className="list_wrap scroll_section trs_9 fade_up">
+                <div className="">
+                  <ul>
+                    <li>
+                      {/* <a href="javascript:void(0)" className="btn_pop" data-target="#main_6_slide" data-seq="<?= $row['seq'] ?>">
+                                        <img src="<?= $row['img'] ?>" alt="<?= $row['title'] ?>" />
+                                    </a> */}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section section_7">
+          <div className="main_7 main_section">
+            <div className="main_inner">
+              <div className="main_tit">
+                <span className="split_fast split_fade_right">Contact</span>
+                <h3 className="fade_up trs_3">
+                  포토클리닉에 <b>문의주세요!</b>
+                </h3>
+                <p className="fade_up trs_6">
+                  저희는 압구정에 있지만, 마음만은 전국에.
+                </p>
+              </div>
+              <div className="con_wrap">
+                <div className="form_box fade_right trs_9">
+                  <form action="/curd/inquiry.php" method="POST">
+                    <div className="input_wrap">
+                      <label htmlFor="name">이름</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="이름을 입력해주세요."
+                        required
+                      />
+                    </div>
+                    <div className="input_wrap ">
+                      <label htmlFor="tel">전화번호</label>
+                      <div className="tel_box">
+                        <input
+                          type="text"
+                          id="tel1"
+                          name="tel1"
+                          placeholder="010"
+                          required
+                          maxLength="3"
+                          onInput={(e) => {
+                            e.target.value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .slice(0, 3);
+                          }}
+                        />
+                        -
+                        <input
+                          type="text"
+                          id="tel2"
+                          name="tel2"
+                          placeholder=""
+                          required
+                          maxLength="4"
+                          onInput={(e) => {
+                            e.target.value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .slice(0, 4);
+                          }}
+                        />
+                        -
+                        <input
+                          type="text"
+                          id="tel3"
+                          name="tel3"
+                          placeholder=""
+                          required
+                          maxLength="4"
+                          onInput={(e) => {
+                            e.target.value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .slice(0, 4);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="input_wrap">
+                      <label htmlFor="mail">이메일</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="이메일을 입력하세요"
+                        required
+                      />
+                    </div>
+                    <div className="input_wrap">
+                      <label htmlFor="content">문의내용</label>
+                      <textarea
+                        name="content"
+                        id="content"
+                        placeholder="내용을 입력하세요"
+                      ></textarea>
+                    </div>
+                    <div className="bottom_wrap">
+                      <div className="chk_wrap">
+                        <input type="checkbox" id="chk" name="chk" required />
+                        <label htmlFor="chk">개인정보 취급방침 동의</label>
+                        <a
+                          href="javascript:void(0)"
+                          className="btn_pop"
+                          data-target="#pop_info"
+                        >
+                          [자세히보기]
+                        </a>
+                      </div>
+                      <button type="submit">
+                        <span>문의하기</span>
+                        <img src="/img/main/main_7_icon1.svg" alt="" />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className="map_box  fade_left trs_9">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.5035950549936!2d127.02916477632164!3d37.5196245268159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca38d2916209f%3A0xa671a8224cdf29d3!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDrhbztmITroZwxNTDquLggMzYtNQ!5e0!3m2!1sko!2skr!4v1748847772496!5m2!1sko!2skr"
+                    width="600"
+                    height="450"
+                    style={{ border: '0' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section section_8 fp-auto-height">
+          <div className="main_8">
+            <div className="swiper">
+              <div className="swiper-wrapper">
+                {/* <?php while($row = mysqli_fetch_array($resultReview)) { ?>
+                        <div class="swiper-slide">
+                            <div class="inner">
+                                <div class="client">
+                                    <div class="logo">
+                                        <img src="<?= $row['img'] ?>" alt="<?= $row['title'] ?>">
+                                    </div>
+                                    <div class="scope">
+                                        <img src="/img/main/scope.svg" alt="">
+                                        <img src="/img/main/scope.svg" alt="">
+                                        <img src="/img/main/scope.svg" alt="">
+                                        <img src="/img/main/scope.svg" alt="">
+                                        <img src="/img/main/scope.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="txt_wrap">
+                                    <strong>"<?= $row['title'] ?>"</strong>
+                                    <p><?= strip_tags($row['content']) ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?> */}
+                <div className="swiper-slide">
+                  <div className="inner">
+                    <div className="client">
+                      <div className="logo">
+                        <img src="/img/main/main_8_logo1.png" alt="" />
+                      </div>
+                      <div className="scope">
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                      </div>
+                    </div>
+                    <div className="txt_wrap">
+                      <strong>"기획부터 결과물까지 완벽했던 촬영"</strong>
+                      <p>
+                        단순 촬영이 아니라, 브랜드 방향성에 맞게 컨셉 기획부터
+                        세심하게 신경 써주셨어요.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="inner">
+                    <div className="client">
+                      <div className="logo">
+                        <img src="/img/main/main_8_logo1.png" alt="" />
+                      </div>
+                      <div className="scope">
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                      </div>
+                    </div>
+                    <div className="txt_wrap">
+                      <strong>"기획부터 결과물까지 완벽했던 촬영"</strong>
+                      <p>
+                        단순 촬영이 아니라, 브랜드 방향성에 맞게 컨셉 기획부터
+                        세심하게 신경 써주셨어요.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="inner">
+                    <div className="client">
+                      <div className="logo">
+                        <img src="/img/main/main_8_logo1.png" alt="" />
+                      </div>
+                      <div className="scope">
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                      </div>
+                    </div>
+                    <div className="txt_wrap">
+                      <strong>"기획부터 결과물까지 완벽했던 촬영"</strong>
+                      <p>
+                        단순 촬영이 아니라, 브랜드 방향성에 맞게 컨셉 기획부터
+                        세심하게 신경 써주셨어요.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="inner">
+                    <div className="client">
+                      <div className="logo">
+                        <img src="/img/main/main_8_logo1.png" alt="" />
+                      </div>
+                      <div className="scope">
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                        <img src="/img/main/scope.svg" alt="" />
+                      </div>
+                    </div>
+                    <div className="txt_wrap">
+                      <strong>"기획부터 결과물까지 완벽했던 촬영"</strong>
+                      <p>
+                        단순 촬영이 아니라, 브랜드 방향성에 맞게 컨셉 기획부터
+                        세심하게 신경 써주셨어요.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <?php require_once $_SERVER["DOCUMENT_ROOT"]."/layout/footer.php";?> */}
+        </section>
+      </div>
+    </>
+  );
+}
