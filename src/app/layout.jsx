@@ -7,7 +7,9 @@ import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/app/components/layout/header';
+import Modal from '@/app/components/layout/modal';
 import QuickMenu from '@/app/components/layout/quick_menu';
+import Dial from '@/app/components/layout/dial';
 
 // 플러그인 등록
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -60,8 +62,10 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
+        <Modal />
         <QuickMenu />
         {children}
+        <Dial />
       </body>
     </html>
   );

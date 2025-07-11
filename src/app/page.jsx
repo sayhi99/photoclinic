@@ -1,34 +1,186 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
+import { useSplitText } from '@/app/components/common';
+import { ModalFunction } from '@/app/components/common';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+  Autoplay,
+  Pagination,
+  EffectFade,
+  Controller,
+} from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 import 'fullpage.js/dist/fullpage.css';
 import './main.css';
+import Footer from '@/app/components/layout/footer';
+
 export default function HomePage() {
-  // fullpage 설정
+  useSplitText();
+  ModalFunction();
+  const main4imgSwiperRef = useRef(null);
+  const main4txtSwiperRef = useRef(null);
+
+  // 다이얼 기능
+  const updateTransforms = (num) => {
+    const rotations = [0, -60, -120, -180, -240, -300];
+    const innerRotations = [0, 90, 240, 180, 120, 60];
+
+    const dialButtons = document.querySelectorAll('.dial .btn');
+
+    dialButtons.forEach((button, index) => {
+      let rotationIndex = (index + num - 1) % rotations.length;
+      let newRotate = rotations[rotationIndex];
+      let innerRotate = innerRotations[rotationIndex];
+
+      // 현재 회전값 가져오기
+      const transform = window.getComputedStyle(button).transform;
+      let currentRotate = 0;
+      if (transform !== 'none') {
+        const matrix = transform.match(/matrix.*\((.+)\)/);
+        if (matrix) {
+          const values = matrix[1].split(', ');
+          const a = values[0];
+          const b = values[1];
+          currentRotate = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        }
+      }
+
+      // 회전 방향 결정 (항상 짧은 경로로 회전)
+      if (Math.abs(newRotate - currentRotate) > 180) {
+        if (newRotate > currentRotate) {
+          newRotate -= 360;
+        } else {
+          newRotate += 360;
+        }
+      }
+
+      // transform 스타일 적용
+      button.style.transform = `rotate(${newRotate}deg)`;
+
+      // img 요소 찾아서 transform 적용
+      const img = button.querySelector('img');
+      if (img) {
+        img.style.transform = `translate(0, -50%) rotate(${innerRotate}deg)`;
+      }
+
+      // 클래스 추가/제거
+      if (newRotate === -180) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
+
+      if (newRotate === 120 || newRotate === -180 || newRotate === -120) {
+        // alert('12');
+        button.classList.add('hidden');
+      } else {
+        button.classList.remove('hidden');
+      }
+
+      if (newRotate === 0) {
+        button.classList.add('on');
+      } else {
+        button.classList.remove('on');
+      }
+    });
+  };
+
+  // Section 4 Swiper 초기화
   useEffect(() => {
-    if (typeof window !== 'undefined') return;
-    const loadFullPage = async () => {
-      try {
-        const fullpage = await import('fullpage.js');
-        new fullpage.default('#fullpage', {
-          //기본 설정
-          scrollingSpeed: 1000,
-          scrollOverflow: true,
-          scrollOverflowReset: true,
-          scrollOverflowOptions: {
+    const initSection4Swipers = async () => {
+      const { default: Swiper } = await import('swiper');
+
+      const main4imgSwiper = new Swiper('.main_4 .img_wrap .swiper', {
+        modules: [Autoplay, EffectFade, Controller],
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        loopedSlides: 6,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+        watchSlidesProgress: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+      });
+
+      const main4txtSwiper = new Swiper('.main_4 .txt_wrap .swiper', {
+        modules: [EffectFade, Controller],
+        slidesPerView: 1,
+        spaceBetween: 0,
+        effect: 'fade',
+        loop: true,
+        loopedSlides: 6,
+      });
+
+      main4txtSwiper.controller.control = main4imgSwiper;
+      main4imgSwiper.controller.control = main4txtSwiper;
+
+      main4imgSwiperRef.current = main4imgSwiper;
+      main4txtSwiperRef.current = main4txtSwiper;
+    };
+
+    const timer = setTimeout(initSection4Swipers, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (main4imgSwiperRef.current) {
+        main4imgSwiperRef.current.destroy();
+      }
+      if (main4txtSwiperRef.current) {
+        main4txtSwiperRef.current.destroy();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    window.updateTransforms = updateTransforms;
+
+    // DOM이 완전히 로드된 후 실행
+    const handleInitialLoad = () => {
+      const dialButtons = document.querySelectorAll('.dial .btn');
+      if (dialButtons.length > 0) {
+        const initialNum = 1; // 초기값 설정
+        updateTransforms(initialNum);
+      }
+    };
+
+    // 즉시 실행 시도
+    handleInitialLoad();
+
+    // DOM이 아직 로드되지 않았다면 약간의 지연 후 재시도
+    const timer = setTimeout(handleInitialLoad, 100);
+
+    return () => {
+      delete window.updateTransforms;
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="App">
+        <ReactFullpage
+          // debug
+          licenseKey="8KZNK-N2PA6-HR1W6-1JLGI-EYBNL"
+          scrollingSpeed={1000}
+          scrollOverflow={true}
+          scrollOverflowReset={true}
+          scrollOverflowOptions={{
             click: true,
             scrollbars: true,
             mouseWheel: true,
             interactiveScrollbars: true,
             shrinkScrollbars: 'scale',
             fadeScrollbars: true,
-          },
-          normalScrollElements: '.scroll_section',
-          //네비게이션
-          navigation: false,
-          slidesNavigation: true,
-          menu: true,
-          anchors: [
+          }}
+          anchors={[
             '1page',
             '2page',
             '3page',
@@ -36,23 +188,23 @@ export default function HomePage() {
             '5page',
             '6page',
             '7page',
-          ],
-
-          //콜백 추가
-          afterLoad: function (anchorLink, index) {
-            headerNav(index.index);
+          ]}
+          normalScrollElements={'.scroll_section'}
+          menu={true}
+          slidesNavigation={true}
+          responsiveWidth={1280}
+          navigation={false}
+          afterLoad={(anchorLink, index) => {
             if (typeof window.headerNav === 'function') {
               window.headerNav(index.index);
             }
 
             if (index.index === 0 || index.index === 7) {
-              // $('.dial').removeClass('on');
               const dialElements = document.querySelectorAll('.dial');
               dialElements.forEach((el) => el.classList.remove('on'));
             } else {
               const dialElements = document.querySelectorAll('.dial');
               dialElements.forEach((el) => el.classList.add('on'));
-              // 섹션 인덱스에 따라 dial 회전
               if (typeof window.updateTransforms === 'function') {
                 window.updateTransforms(index.index);
               }
@@ -65,11 +217,9 @@ export default function HomePage() {
                 let currentCount = 0;
                 const duration = 1500;
                 const increment = countTo / (duration / 16);
-                const $this = $(element);
 
                 const animate = function () {
                   currentCount += increment;
-                  $this.text(Math.floor(currentCount).toLocaleString());
                   if (currentCount < countTo) {
                     element.textContent =
                       Math.floor(currentCount).toLocaleString();
@@ -81,29 +231,7 @@ export default function HomePage() {
                 animate();
               });
             }
-          },
-
-          //반응형
-          responsiveWidth: 1280,
-          // fixedElements: 'header',
-        });
-      } catch (error) {
-        console.log('FullPage.js 콜백 실행 중 오류:', error);
-      }
-    };
-    // loadFullPage();
-    setTimeout(loadFullPage, 500);
-  }, []);
-
-  //글자 쪼개기 기능
-  
-
-  return (
-    <>
-      <div className="App">
-        <ReactFullpage
-          debug
-          licenseKey="8KZNK-N2PA6-HR1W6-1JLGI-EYBNL"
+          }}
           render={() => (
             //  <div id="fullpage">
             <ReactFullpage.Wrapper>
@@ -129,65 +257,86 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                  <div className="swiper main_1_swiper">
-                    <div className="swiper-wrapper">
-                      <div className="swiper-slide">
-                        <div className="bg main_1_1">
-                          <div className="text_wrap">
-                            <b className="split_fast">포토클리닉은</b>
-                            <strong>
-                              병원의 이야기에 <br />
-                              사람의 하모니를 더합니다
-                            </strong>
-                            <p>
-                              모든 컨텐츠는 섬세한 기획과 따뜻한 감성으로
-                              촬영합니다. <br />
-                              병원의 이야기가 특별한 브랜드가 되도록 진심을
-                              담습니다. <br />
-                              사진은 "진주마음우산정신건강의학과의 감성"입니다.
-                            </p>
-                          </div>
+                  <Swiper
+                    className="swiper main_1_swiper"
+                    modules={[Autoplay, Pagination, EffectFade]}
+                    slidesPerView={1}
+                    spaceBetween={0}
+                    loop={true}
+                    effect="fade"
+                    autoplay={{
+                      delay: 3000,
+                      disableOnInteraction: false,
+                    }}
+                    pagination={{
+                      el: '.main_1 .swiper-pagination',
+                      clickable: true,
+                      renderBullet: function (index, className) {
+                        return (
+                          '<span class="' +
+                          className +
+                          '">' +
+                          (index + 1) +
+                          '</span>'
+                        );
+                      },
+                    }}
+                  >
+                    <SwiperSlide>
+                      <div className="bg main_1_1">
+                        <div className="text_wrap">
+                          <b className="split_fast">포토클리닉은</b>
+                          <strong>
+                            병원의 이야기에 <br />
+                            사람의 하모니를 더합니다
+                          </strong>
+                          <p>
+                            모든 컨텐츠는 섬세한 기획과 따뜻한 감성으로
+                            촬영합니다. <br />
+                            병원의 이야기가 특별한 브랜드가 되도록 진심을
+                            담습니다. <br />
+                            사진은 "진주마음우산정신건강의학과의 감성"입니다.
+                          </p>
                         </div>
                       </div>
-                      <div className="swiper-slide">
-                        <div className="bg main_1_2">
-                          <div className="text_wrap">
-                            <b className="split_fast">포토클리닉은</b>
-                            <strong>
-                              섬세한 기획으로 <br />
-                              병원의 감성을 그려냅니다.
-                            </strong>
-                            <p>
-                              모든 사진은 단순한 기록이 아닌, 병원이 지닌
-                              분위기와 의료진의 따뜻한 마음을 전하는 작업입니다.{' '}
-                              <br />
-                              더원서울안과의 이야기를 닮은 공간, 그 안에서
-                              환자를 바라보는 시선까지 담아 <br />
-                              브랜드의 감성을 사진으로 완성합니다.
-                            </p>
-                          </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="bg main_1_2">
+                        <div className="text_wrap">
+                          <b className="split_fast">포토클리닉은</b>
+                          <strong>
+                            섬세한 기획으로 <br />
+                            병원의 감성을 그려냅니다.
+                          </strong>
+                          <p>
+                            모든 사진은 단순한 기록이 아닌, 병원이 지닌 분위기와
+                            의료진의 따뜻한 마음을 전하는 작업입니다. <br />
+                            더원서울안과의 이야기를 닮은 공간, 그 안에서 환자를
+                            바라보는 시선까지 담아 <br />
+                            브랜드의 감성을 사진으로 완성합니다.
+                          </p>
                         </div>
                       </div>
-                      <div className="swiper-slide">
-                        <div className="bg main_1_3">
-                          <div className="text_wrap">
-                            <b className="split_fast">포토클리닉은</b>
-                            <strong>
-                              병원의 이야기를 <br />
-                              브랜드의 언어로 전합니다.
-                            </strong>
-                            <p>
-                              따뜻한 진료의 순간, 섬세하게 설계된 공간, <br />
-                              그리고 의료진의 진심이 한 장의 사진 속에서
-                              브랜드가 됩니다. <br />
-                              알파서울안과의 이야기를 포토클리닉의 감성으로
-                              기록했습니다.
-                            </p>
-                          </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="bg main_1_3">
+                        <div className="text_wrap">
+                          <b className="split_fast">포토클리닉은</b>
+                          <strong>
+                            병원의 이야기를 <br />
+                            브랜드의 언어로 전합니다.
+                          </strong>
+                          <p>
+                            따뜻한 진료의 순간, 섬세하게 설계된 공간, <br />
+                            그리고 의료진의 진심이 한 장의 사진 속에서 브랜드가
+                            됩니다. <br />
+                            알파서울안과의 이야기를 포토클리닉의 감성으로
+                            기록했습니다.
+                          </p>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </SwiperSlide>
+                  </Swiper>
                   <div className="bottom_wrap">
                     <div className="pagination_wrap">
                       <img src="/img/main/main_1_vector1.svg" alt="" />
@@ -240,7 +389,11 @@ export default function HomePage() {
                         </div>
                         <a
                           className="link_btn fade_right"
-                          href="javascript:alert('준비중')"
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            alert('준비중');
+                          }}
                         >
                           <span>프로젝트 문의하기</span>
                           <img src="/img/main/main_5_icon1.svg" alt="" />
@@ -579,7 +732,11 @@ export default function HomePage() {
                     </div>
                     <a
                       className="link_btn fade_right trs_12"
-                      href="javascript:alert('준비중')"
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        alert('준비중');
+                      }}
                     >
                       <span>프로젝트 문의하기</span>
                       <img src="/img/main/main_5_icon1.svg" alt="" />
@@ -605,9 +762,71 @@ export default function HomePage() {
                       <div className="">
                         <ul>
                           <li>
-                            {/* <a href="javascript:void(0)" className="btn_pop" data-target="#main_6_slide" data-seq="<?= $row['seq'] ?>">
-                                        <img src="<?= $row['img'] ?>" alt="<?= $row['title'] ?>" />
-                                    </a> */}
+                            <a
+                              href="#"
+                              className="btn_pop"
+                              data-target="#main_6_slide"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                // 모달 열기 로직은 useModal 훅에서 처리됨
+                              }}
+                            >
+                              <img
+                                src="/img/main/main_6_img1.png"
+                                alt="더드림의원"
+                              />
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="btn_pop"
+                              data-target="#main_6_slide"
+                              data-seq=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                // 모달 열기 로직은 useModal 훅에서 처리됨
+                              }}
+                            >
+                              <img
+                                src="/img/main/main_6_img2.png"
+                                alt="더드림의원"
+                              />
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="btn_pop"
+                              data-target="#main_6_slide"
+                              data-seq=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                // 모달 열기 로직은 useModal 훅에서 처리됨
+                              }}
+                            >
+                              <img
+                                src="/img/main/main_6_img3.png"
+                                alt="더드림의원"
+                              />
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="btn_pop"
+                              data-target="#main_6_slide"
+                              data-seq=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                // 모달 열기 로직은 useModal 훅에서 처리됨
+                              }}
+                            >
+                              <img
+                                src="/img/main/main_6_img4.png"
+                                alt="더드림의원"
+                              />
+                            </a>
                           </li>
                         </ul>
                       </div>
@@ -718,9 +937,13 @@ export default function HomePage() {
                                 개인정보 취급방침 동의
                               </label>
                               <a
-                                href="javascript:void(0)"
+                                href="#"
                                 className="btn_pop"
                                 data-target="#pop_info"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  // 모달 열기 로직은 useModal 훅에서 처리됨
+                                }}
                               >
                                 [자세히보기]
                               </a>
@@ -867,6 +1090,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 {/* <?php require_once $_SERVER["DOCUMENT_ROOT"]."/layout/footer.php";?> */}
+                <Footer />
               </section>
               {/* </div> */}
             </ReactFullpage.Wrapper>

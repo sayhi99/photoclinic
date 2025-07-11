@@ -989,6 +989,9 @@
   border: 1px solid #e1e1e1;
   box-sizing: border-box;
 }
+.main_6 .list_wrap ul li a img {
+  pointer-events: none;
+}
 #main_6_slide .ico_close {
   width: 30px;
   height: 30px;
@@ -1005,6 +1008,7 @@
 #main_6_slide .swiper {
   height: 100%;
   max-height: 920px;
+  width: 80%;
 }
 #main_6_slide .swiper-slide {
   display: flex;
@@ -1025,7 +1029,7 @@
   /* padding: 20px; */
   /* box-sizing: border-box; */
   overflow-y: scroll;
-  height: calc(80vh - 40px);
+  max-height: calc(80vh - 40px);
   /* overflow: hidden; */
 }
 #main_6_slide .swiper-slide .inner * {
@@ -1409,7 +1413,7 @@
 .dial .btn img {
   position: absolute;
   left: 63%;
-  /* transform: translate(0, -50%); */
+  transform: translate(0, -50%);
   transition: 0.7s;
 }
 .dial .btn:nth-child(1) {

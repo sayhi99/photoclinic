@@ -5,14 +5,14 @@ import Link from 'next/link';
 import './header.css';
 
 export default function Header() {
-  const [mnavOpen, mnavClose] = useState(false);
+  const [mnavOpen, setMnavOpen] = useState(false);
 
   const handleBurgerClick = () => {
-    mnavClose(!mnavOpen);
+    setMnavOpen(!mnavOpen);
   };
 
   const handleMnavClick = (e) => {
-    e.stropPropagation();
+    e.stopPropagation();
     setMnavOpen(false);
   };
 
@@ -40,14 +40,50 @@ export default function Header() {
     }
   }, [mnavOpen]);
 
-  //모바일네비 메뉴 클릭
   useEffect(() => {
-    $('.mnav_menu > a').on('click', function (e) {
-      e.stopPropagation(); // 이벤트 버블링 방지
-      $('.mnav_wrap').removeClass('on');
-      $('.global_header .burger').removeClass('on');
+    const checkSection1Active = () => {
+      const section1 = document.querySelector('.section_1');
+      const globalHeader = document.querySelector('.global_header');
+
+      if (section1 && globalHeader) {
+        if (section1.classList.contains('active')) {
+          globalHeader.classList.remove('on');
+        } else {
+          globalHeader.classList.add('on');
+        }
+      }
+    };
+
+    // 초기 실행
+    checkSection1Active();
+
+    // MutationObserver를 사용하여 section_1의 클래스 변경 감지
+    const section1Observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'class'
+        ) {
+          checkSection1Active();
+        }
+      });
     });
+
+    // section_1 요소가 존재하면 observer 시작
+    const section1 = document.querySelector('.section_1');
+    if (section1) {
+      section1Observer.observe(section1, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+
+    // 클린업 함수
+    return () => {
+      section1Observer.disconnect();
+    };
   }, []);
+
   return (
     <>
       <header className="global_header">
@@ -64,22 +100,22 @@ export default function Header() {
           </h1>
           <ul className="nav off">
             <li className="nav_menu">
-              <Link href={'#2page'}>Director</Link>
+              <a href="#2page">Director</a>
             </li>
             <li className="nav_menu">
-              <Link href={'#3page'}>About</Link>
+              <a href="#3page">About</a>
             </li>
             <li className="nav_menu">
-              <Link href={'#4page'}>Philosophy</Link>
+              <a href="#4page">Philosophy</a>
             </li>
             <li className="nav_menu">
-              <Link href={'#5page'}>Services</Link>
+              <a href="#5page">Services</a>
             </li>
             <li className="nav_menu">
-              <Link href={'#6page'}>Portfolio</Link>
+              <a href="#6page">Portfolio</a>
             </li>
             <li className="nav_menu">
-              <Link href={'#7page'}>Contact</Link>
+              <a href="#7page">Contact</a>
             </li>
           </ul>
           <button
@@ -97,34 +133,34 @@ export default function Header() {
             <div className="inner">
               <ul className="mnav">
                 <li className="mnav_menu">
-                  <Link href={'#2page'} onClick={handleMnavClick}>
+                  <a href="#2page" onClick={handleMnavClick}>
                     Director
-                  </Link>
+                  </a>
                 </li>
                 <li className="mnav_menu">
-                  <Link href={'#3page'} onClick={handleMnavClick}>
+                  <a href="#3page" onClick={handleMnavClick}>
                     About
-                  </Link>
+                  </a>
                 </li>
                 <li className="mnav_menu">
-                  <Link href={'#4page'} onClick={handleMnavClick}>
+                  <a href="#4page" onClick={handleMnavClick}>
                     Philosophy
-                  </Link>
+                  </a>
                 </li>
                 <li className="mnav_menu">
-                  <Link href={'#5page'} onClick={handleMnavClick}>
+                  <a href="#5page" onClick={handleMnavClick}>
                     Services
-                  </Link>
+                  </a>
                 </li>
                 <li className="mnav_menu">
-                  <Link href={'#6page'} onClick={handleMnavClick}>
+                  <a href="#6page" onClick={handleMnavClick}>
                     Portfolio
-                  </Link>
+                  </a>
                 </li>
                 <li className="mnav_menu">
-                  <Link href={'#7page'} onClick={handleMnavClick}>
+                  <a href="#7page" onClick={handleMnavClick}>
                     Contact
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>

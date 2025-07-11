@@ -50,7 +50,7 @@ input {
 }
 
 /* 모달, 팝업 공통 css */
-.modal {
+/* .modal {
   position: fixed;
   z-index: 99999;
   left: 0;
@@ -63,7 +63,7 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .pc_block {
   display: block;
