@@ -139,6 +139,7 @@ export default function HomePage() {
     };
   }, []);
 
+  // 다이얼 관련 스크립트
   useEffect(() => {
     window.updateTransforms = updateTransforms;
 
@@ -160,6 +161,39 @@ export default function HomePage() {
     return () => {
       delete window.updateTransforms;
       clearTimeout(timer);
+    };
+  }, []);
+
+  const main8SwiperRef = useRef(null);
+
+  // Main 8 Swiper 초기화
+  useEffect(() => {
+    const initMain8Swiper = async () => {
+      const { default: Swiper } = await import('swiper');
+      const { Autoplay } = await import('swiper');
+
+      main8SwiperRef.current = new Swiper('.main_8 .swiper', {
+        modules: [Autoplay],
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        loop: true,
+        speed: 3000,
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: false,
+          stopOnLastSlide: false,
+        },
+      });
+    };
+
+    // DOM이 로드된 후 Swiper 초기화
+    const timer = setTimeout(initMain8Swiper, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (main8SwiperRef.current) {
+        main8SwiperRef.current.destroy();
+      }
     };
   }, []);
 
