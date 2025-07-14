@@ -66,3 +66,8 @@
 .quick_menu_wrap .quick_menu_btn img.open {
   opacity: 0;
 }
+@media screen and (max-width: 768px) {
+  .quick_menu.pc_block {
+    display: flex;
+  }
+}

@@ -1,10 +1,21 @@
 'use client';
 import './quick_menu.css';
+import { useEffect, useState } from 'react';
 
 export default function QuickMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleQuickMenuClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Quick menu button clicked');
+    setIsOpen(!isOpen);
+    console.log('Menu state:', !isOpen);
+  };
+
   return (
     <>
-      <div className="quick_menu_wrap on ">
+      <div className={`quick_menu_wrap ${isOpen ? 'on' : ''}`}>
         <div>
           <div className="quick_menu pc_block">
             <div className="quick_item">
@@ -57,7 +68,10 @@ export default function QuickMenu() {
             </div>
           </div>
         </div>
-        <button className="quick_menu_btn mobile_block">
+        <button
+          className="quick_menu_btn mobile_block"
+          onClick={handleQuickMenuClick}
+        >
           <img
             className="open"
             src="/img/common/quick_menu1.svg"
