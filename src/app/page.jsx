@@ -23,71 +23,6 @@ export default function HomePage() {
   const main4imgSwiperRef = useRef(null);
   const main4txtSwiperRef = useRef(null);
 
-  // 다이얼 기능
-  const updateTransforms = (num) => {
-    const rotations = [0, -60, -120, -180, -240, -300];
-    const innerRotations = [0, 90, 240, 180, 120, 60];
-
-    const dialButtons = document.querySelectorAll('.dial .btn');
-
-    dialButtons.forEach((button, index) => {
-      let rotationIndex = (index + num - 1) % rotations.length;
-      let newRotate = rotations[rotationIndex];
-      let innerRotate = innerRotations[rotationIndex];
-
-      // 현재 회전값 가져오기
-      const transform = window.getComputedStyle(button).transform;
-      let currentRotate = 0;
-      if (transform !== 'none') {
-        const matrix = transform.match(/matrix.*\((.+)\)/);
-        if (matrix) {
-          const values = matrix[1].split(', ');
-          const a = values[0];
-          const b = values[1];
-          currentRotate = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-        }
-      }
-
-      // 회전 방향 결정 (항상 짧은 경로로 회전)
-      if (Math.abs(newRotate - currentRotate) > 180) {
-        if (newRotate > currentRotate) {
-          newRotate -= 360;
-        } else {
-          newRotate += 360;
-        }
-      }
-
-      // transform 스타일 적용
-      button.style.transform = `rotate(${newRotate}deg)`;
-
-      // img 요소 찾아서 transform 적용
-      const img = button.querySelector('img');
-      if (img) {
-        img.style.transform = `translate(0, -50%) rotate(${innerRotate}deg)`;
-      }
-
-      // 클래스 추가/제거
-      if (newRotate === -180) {
-        button.classList.add('active');
-      } else {
-        button.classList.remove('active');
-      }
-
-      if (newRotate === 120 || newRotate === -180 || newRotate === -120) {
-        // alert('12');
-        button.classList.add('hidden');
-      } else {
-        button.classList.remove('hidden');
-      }
-
-      if (newRotate === 0) {
-        button.classList.add('on');
-      } else {
-        button.classList.remove('on');
-      }
-    });
-  };
-
   // Section 4 Swiper 초기화
   useEffect(() => {
     const initSection4Swipers = async () => {
@@ -136,31 +71,6 @@ export default function HomePage() {
       if (main4txtSwiperRef.current) {
         main4txtSwiperRef.current.destroy();
       }
-    };
-  }, []);
-
-  // 다이얼 관련 스크립트
-  useEffect(() => {
-    window.updateTransforms = updateTransforms;
-
-    // DOM이 완전히 로드된 후 실행
-    const handleInitialLoad = () => {
-      const dialButtons = document.querySelectorAll('.dial .btn');
-      if (dialButtons.length > 0) {
-        const initialNum = 1; // 초기값 설정
-        updateTransforms(initialNum);
-      }
-    };
-
-    // 즉시 실행 시도
-    handleInitialLoad();
-
-    // DOM이 아직 로드되지 않았다면 약간의 지연 후 재시도
-    const timer = setTimeout(handleInitialLoad, 100);
-
-    return () => {
-      delete window.updateTransforms;
-      clearTimeout(timer);
     };
   }, []);
 
