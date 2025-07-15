@@ -23,6 +23,53 @@ export default function HomePage() {
   const main4imgSwiperRef = useRef(null);
   const main4txtSwiperRef = useRef(null);
 
+  // 마우스 무브 이벤트 핸들러를 React 방식으로 변환
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const target = document.querySelector('.main_1');
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // .main_1 내부일 때만 퍼센트 계산
+      if (x >= 0 && x <= width && y >= 0 && y <= height) {
+        const xPercent = ((x / width) * 100).toFixed(1);
+        const yPercent = ((y / height) * 100).toFixed(1);
+
+        const xMove = xPercent * 1;
+        const yMove = yPercent * 0.5;
+
+        const xGrid = xMove - 100;
+        const yGrid = yMove - 100;
+
+        target.classList.remove('off');
+
+        const coords = document.getElementById('coords');
+        if (coords) {
+          coords.textContent = `X: ${xPercent}%, Y: ${yPercent}%`;
+        }
+        target.setAttribute(
+          'style',
+          `--x:${xMove}%; --y:${yMove}%; --xGrid:${xGrid}%; --yGrid:${yGrid}%;`
+        );
+      } else {
+        const coords = document.getElementById('coords');
+        if (coords) {
+          coords.textContent = 'X: --%, Y: --%';
+        }
+        target.setAttribute('style', '');
+        target.classList.add('off');
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   // Section 4 Swiper 초기화
   useEffect(() => {
     const initSection4Swipers = async () => {
